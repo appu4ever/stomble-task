@@ -3,6 +3,8 @@
 <table>
   <tr>
     <td valign="top"><img src="src/images/Desktop.png" height="300"/></td>
+  </tr>
+  <tr>
     <td valign="top">
       <div style="display:flex;justify-content:center;">
         <img src="src/images/Mobile-1.png" height="300" />
