@@ -12,8 +12,6 @@ CSS in the front end and interfaced with firebase firestore NoSQL database.
 - Fully responsive for mobile, tablet and desktop
 
 ### How to run
-- git clone https://github.com/MartinLoydInc/GrassrootsMobile.git
+- git clone https://github.com/appu4ever/stomble-task.git
 - npm install
 - npm start
--  On your Android device, press "Scan QR Code" on the "Projects" tab of the Expo Go app and scan the QR code you see in the terminal or in Expo Dev Tools.
--  On your iPhone or iPad, open the default Apple "Camera" app and scan the QR code you see in the terminal or in Expo Dev Tools.
