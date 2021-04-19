@@ -13,24 +13,29 @@ const config = {
 firebase.initializeApp(config);
 const firestore = firebase.firestore();
 
-const addCollectionAndDocs = (collectionKey, docsToAdd) => {
+const addCollectionAndDocs = async (collectionKey, docsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
+  const document = await collectionRef.doc(docsToAdd.number).get();
   return new Promise((resolve, reject) => {
-    collectionRef
-      .doc(docsToAdd.number)
-      .set({
-        cardOwnerName: docsToAdd.name,
-        expirationMonth: docsToAdd.month,
-        expirationYear: docsToAdd.year,
-        cardCVV: docsToAdd.cvv,
-      })
-      .then(
-        () => {
-          console.log(`Added document to the database`);
-          resolve(true);
-        },
-        (err) => reject(err)
-      );
+    if (document.exists) {
+      reject('Document already exists');
+    } else {
+      collectionRef
+        .doc(docsToAdd.number)
+        .set({
+          cardOwnerName: docsToAdd.name,
+          expirationMonth: docsToAdd.month,
+          expirationYear: docsToAdd.year,
+          cardCVV: docsToAdd.cvv,
+        })
+        .then(
+          () => {
+            console.log(`Added document to the database`);
+            resolve(true);
+          },
+          (err) => reject(err.message)
+        );
+    }
   });
 };
 

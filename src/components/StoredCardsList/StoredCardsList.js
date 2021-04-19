@@ -1,15 +1,18 @@
 import React from 'react';
-import Input from '../Input/Input';
 import './stored-cards-list.css';
 
-export default function StoredCardList({ storedCards }) {
-  console.log(storedCards);
+export default function StoredCardList({ storedCards, onCardSelect }) {
   return (
     <div className="stored-cards-container">
       <h3>Your Cards</h3>
       {storedCards.map((card) => (
         <div key={card.cardNumber} className="stored-card-info-container">
-          <input type="radio" value="card" name="cards" />
+          <input
+            type="radio"
+            value="card"
+            name="cards"
+            onChange={() => onCardSelect(card)}
+          />
           <label>
             <table>
               <tbody>

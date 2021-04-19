@@ -1,10 +1,7 @@
 import {
   RESET_ERRORS,
   SET_ERRORS,
-  SET_CARD_DETAILS,
-  RESET_CARD_DETAILS,
   SET_FORM_ERRORS,
-  SET_STORED_CARD,
   GET_STORED_CARDS,
 } from '../actions/cards-action';
 
@@ -45,33 +42,6 @@ export const cardReducer = (state = INITIAL_STATE, action) => {
         },
       };
     }
-    case SET_CARD_DETAILS: {
-      return {
-        ...state,
-        details: {
-          ...state.details,
-          [action.inputName]: action.inputValue,
-        },
-      };
-    }
-    case RESET_CARD_DETAILS: {
-      return {
-        ...state,
-        details: {
-          name: '',
-          number: '',
-          cvv: '',
-          month: '',
-          year: '',
-        },
-      };
-    }
-    // case SET_STORED_CARD: {
-    //   return {
-    //     ...state,
-    //     storedCards: [...state.storedCards, action.cardId],
-    //   };
-    // }
     case SET_ERRORS: {
       return {
         ...state,

@@ -11,7 +11,6 @@ export default function Datalist({
   optionArray,
   name,
 }) {
-  console.log('Form', formErrors);
   return (
     <div>
       <Input
