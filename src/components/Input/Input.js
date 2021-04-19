@@ -11,6 +11,8 @@ export default function Input({
   divStyle = {},
   ...otherProps
 }) {
+  console.log(errors);
+  console.log(name);
   return (
     <div className="form-input" style={divStyle}>
       <label>{children}</label>

@@ -6,6 +6,7 @@ import Form from './components/Form/Form';
 import Card from './components/Card/Card';
 import Input from './components/Input/Input';
 import DateSection from './components/ExpirationDate/DateSection';
+// import Datalist from './components/Input/Datalist';
 import Select from './components/ExpirationDate/Select';
 import StoredCardsList from './components/StoredCardsList/StoredCardsList';
 
@@ -38,54 +39,52 @@ function App() {
   };
 
   const handleBlur = (e) => {
-    if (e.target.name === 'number') {
-      if (!/^\d+$/.test(cardDetails.number)) {
+    const { name, value } = e.target;
+    if (value.length === 0) {
+      dispatch(
+        cardActions.setErrors(name, `Please enter a value for card ${name}`)
+      );
+      setIsFormValid(false);
+      return;
+    }
+
+    if (name === 'number') {
+      if (!/^\d+$/.test(value)) {
         dispatch(
-          cardActions.setErrors(
-            e.target.name,
-            'Input should contain only numbers'
-          )
+          cardActions.setErrors(name, 'Card number should contain only numbers')
         );
         setIsFormValid(false);
         return;
       }
 
-      if (cardDetails.number.length !== 16) {
+      if (value.length !== 16) {
         dispatch(
-          cardActions.setErrors(e.target.name, 'Input should be 16 digits long')
+          cardActions.setErrors(name, 'Card number should be 16 digits')
         );
         setIsFormValid(false);
         return;
       }
     }
 
-    if (e.target.name === 'cvv') {
-      if (!/^\d+$/.test(cardDetails.cvv)) {
+    if (name === 'cvv') {
+      if (!/^\d+$/.test(value)) {
         dispatch(
-          cardActions.setErrors(
-            e.target.name,
-            'Input should contain only numbers'
-          )
+          cardActions.setErrors(name, 'CVV should contain only numbers')
         );
         setIsFormValid(false);
         return;
       }
-      if (cardDetails.cvv.length !== 3) {
-        dispatch(
-          cardActions.setErrors(e.target.name, 'Input should be 3 digits long')
-        );
+      if (value.length !== 3) {
+        dispatch(cardActions.setErrors(name, 'Input should be 3 digits long'));
         setIsFormValid(false);
         return;
       }
     }
 
-    if (e.target.name === 'name') {
-      if (!/^[a-zA-z]+([\s][a-zA-Z]+)*$/.test(cardDetails.name)) {
+    if (name === 'name') {
+      if (!/^[a-zA-z]+([\s][a-zA-Z]+)*$/.test(value)) {
         dispatch(
-          cardActions.setErrors(
-            e.target.name,
-            'Input should contain only alphabets'
-          )
+          cardActions.setErrors(name, 'Input should contain only alphabets')
         );
         setIsFormValid(false);
         return;
@@ -97,6 +96,16 @@ function App() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch(cardActions.setCardDetails(name, value));
+  };
+
+  const handleFocus = (e) => {
+    const { name } = e.target;
+    if (name === 'cvv') {
+      setIsFlipped(true);
+    } else {
+      setIsFlipped(false);
+    }
+    dispatch(cardActions.resetErrors());
   };
 
   const handleSubmit = (e) => {
@@ -125,9 +134,21 @@ function App() {
             errors={formErrors}
             handleBlur={handleBlur}
             handleInputDelete={handleInputDelete}
+            onFocus={handleFocus}
           >
             Card Number
           </Input>
+          {/* <Datalist
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            handleInputDelete={handleInputDelete}
+            formErrors={formErrors}
+            value={cardDetails.number}
+            optionArray={storedCards}
+            name="number"
+          >
+            Card Number
+          </Datalist> */}
           <Input
             name="name"
             onChange={handleChange}
@@ -136,6 +157,7 @@ function App() {
             handleBlur={handleBlur}
             handleInputDelete={handleInputDelete}
             type="text"
+            onFocus={handleFocus}
           >
             Card Name
           </Input>
@@ -163,8 +185,8 @@ function App() {
               errors={formErrors}
               handleBlur={handleBlur}
               handleInputDelete={handleInputDelete}
-              onFocus={() => setIsFlipped(true)}
-              divStyle={{ width: '50%' }}
+              onFocus={handleFocus}
+              style={{ width: '20%' }}
             >
               CVV
             </Input>

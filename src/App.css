@@ -1,14 +1,13 @@
 .container {
   width: 100vw;
   height: 100vh;
+  font-family: 'Lato';
   display: flex;
 }
 .form-card-container {
-  /* border: 1px solid black; */
   flex-grow: 1;
 }
 .card {
-  background: #fff;
   border-radius: 15px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
@@ -29,14 +28,9 @@ span {
   font-size: 0.8em;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
   .container {
     flex-direction: column;
     overflow-y: scroll;
-  }
-}
-@media screen and (min-width: 321px) and (max-width: 480px) {
-  .container {
-    flex-direction: column;
   }
 }

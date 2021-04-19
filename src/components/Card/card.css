@@ -1,13 +1,13 @@
 .card-container {
   position: relative;
-  width: 235px;
-  height: 150px;
+  width: 250px;
+  min-height: 160px;
   transform: translateX(-50%);
   left: 50%;
-  bottom: -5%;
+  bottom: -3%;
   z-index: 1;
   perspective: 75rem;
-  background-color: transparent;
+  background: transparent;
   color: #d3d3d3;
 }
 
@@ -37,7 +37,7 @@
 .card-details {
   display: flex;
   justify-content: space-between;
-  padding: 10px 15px;
+  padding: 15px;
 }
 
 .card-details > .form-input > input {

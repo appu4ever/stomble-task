@@ -10,7 +10,6 @@ export default function Card({
   year = 'YY',
   isFlipped,
 }) {
-  console.log(cardNumber);
   return (
     <div className="card card-container">
       <div
@@ -24,11 +23,15 @@ export default function Card({
         </div>
         <div className="card-details column">
           <Input value={cardNumber} readOnly />
-          <div
-            className="card-details"
-            style={{ paddingLeft: 0, paddingRight: 0 }}
-          >
-            <Input value={cardName} readOnly divStyle={{ width: '70%' }}>
+          <div style={{ display: 'flex' }}>
+            <Input
+              value={cardName}
+              readOnly
+              divStyle={{
+                width: '70%',
+              }}
+              style={{ background: 'transparent', border: 'none' }}
+            >
               Card Holder
             </Input>
             <Input
@@ -36,6 +39,11 @@ export default function Card({
               placeholder="MM/YY"
               readOnly
               divStyle={{ width: '30%' }}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: '#d3d3d3',
+              }}
             >
               Expires
             </Input>
@@ -50,7 +58,7 @@ export default function Card({
           value={cardCVV}
           readOnly
           id="card-cvv"
-          divStyle={{ margin: '5px 10px' }}
+          divStyle={{ margin: '5px 10px', color: '#fff' }}
         >
           CVV
         </Input>

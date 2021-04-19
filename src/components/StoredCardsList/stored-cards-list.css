@@ -1,9 +1,8 @@
 .stored-cards-container {
-  /* flex-grow: 1; */
+  flex-grow: 1;
 }
 .stored-card-info-container {
   display: flex;
-  /* justify-content: space-between; */
   margin: 20px 10px;
 }
 .stored-card-info {
@@ -13,7 +12,6 @@
 @media screen and (min-width: 768px) {
   .stored-cards-container {
     padding-top: 10%;
-    flex-grow: 1;
   }
   .stored-card-info {
     font-size: 1.5em;
